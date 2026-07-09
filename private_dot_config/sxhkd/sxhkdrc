@@ -1,0 +1,269 @@
+#
+# wm independent hotkeys
+#
+
+# terminal emulator
+super + Return
+	kitty
+
+# program launcher
+super + @space
+#	dmenu_run -b -p " dmenu run" -i -fn "HackNerdFontMono-21" -nb '#240041' -nf '#c79bff' -sf '#00ffb7' -sb '#900048'
+    dmenu_run -p " dmenu run" -i -fn "Inconsolata CondensedBlack-21" -nb '#240041' -nf '#c79bff' -sf '#00ffb7' -sb '#900048'
+
+# power menu
+super + End
+	~/.config/power-menu.sh
+
+# USB menu
+super + u
+	~/.config/usb-menu.sh manual
+
+# gamemode
+super + x
+    ~/.local/bin/toggle-picom-gamemode.sh
+
+# rofi applications menu
+XF86HomePage
+	rofi -show drun
+super + F1
+#    xfce4-popup-whiskermenu
+    rofi -show drun
+
+# show/hide whiskermenu
+super + z
+	xfce4-popup-whiskermenu
+
+# thunderbird
+XF86Mail
+	thunderbird
+super + F2
+    thunderbird
+
+# firefox
+XF86Search
+	firefox
+super + F3
+    firefox
+
+# edge
+#super + e
+#	microsoft-edge-stable
+
+# galculator
+XF86Calculator
+	galculator
+super + F4
+    galculator
+
+# music
+XF86Tools
+	youtube-music
+super + F5
+    youtube-music
+
+# thunar
+super + ntilde
+	Thunar
+super + semicolon
+    thunar
+
+# bluetooth
+super + b
+	blueman-manager
+
+# discord
+super + d
+	discord
+
+# steam
+super + F12
+	steam
+
+# heroic games laucher
+super + Delete
+	heroic
+
+# volume ctrl
+XF86AudioMute
+	amixer sset Master toggle
+super + F9
+    amixer sset Master toggle
+
+XF86AudioLowerVolume
+	amixer sset Master playback 5%-
+super + F10
+    amixer sset Master playback 5%-
+
+XF86AudioRaiseVolume
+	amixer sset Master playback 5%+
+super + F11
+    amixer sset Master playback 5%+
+
+# full-screenshot
+Print
+	xfce4-screenshooter -f
+
+# x-screenshot
+shift + Print
+	xfce4-screenshooter -r
+
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd
+
+#
+# mouse workspace
+#
+
+# switch focus to the next workspace
+button9
+	bspc desktop -f next
+
+# switch focus to the previous workspace
+button8
+	bspc desktop -f prev
+
+#
+# bspwm hotkeys
+#
+
+# quit/restart bspwm
+super + alt + {q,r}
+	bspc {quit,wm -r}
+
+# close and kill
+super + {_,shift + }w
+	bspc node -{c,k}
+
+# alternate between the tiled and monocle layout
+super + m
+	bspc desktop -l next
+
+# send the newest marked node to the newest preselected node
+super + y
+	bspc node newest.marked.local -n newest.!automatic.local
+
+# swap the current node and the biggest window
+super + g
+	bspc node -s biggest.window
+
+#
+# state/flags
+#
+
+# set the window state
+super + {t,shift + t,s,f}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# set the node flags
+super + ctrl + {m,x,y,z}
+	bspc node -g {marked,locked,sticky,private}
+
+#
+# focus/swap (single monitor setup)
+#
+
+# focus the node in the given direction
+#super + {_,shift + }{h,j,k,l}
+#	bspc node -{f,s} {west,south,north,east}
+
+# focus the node for the given path jump
+#super + {p,b,comma,period}
+#	bspc node -f @{parent,brother,first,second}
+
+# focus the next/previous window in the current desktop
+super + {_,shift + }c
+	bspc node -f {next,prev}.local.!hidden.window
+
+# focus the next/previous desktop in the current monitor
+super + bracket{left,right}
+	bspc desktop -f {prev,next}.local
+
+# focus the last node/desktop
+super + {grave,Tab}
+	bspc {node,desktop} -f last
+
+# focus the older or newer node in the focus history
+super + {o,i}
+	bspc wm -h off; \
+	bspc node {older,newer} -f; \
+	bspc wm -h on
+
+# focus or send to the given desktop
+#super + {_,shift + }{1-9,0}
+#	bspc {desktop -f,node -d} '^{1-9,10}'
+
+#
+# focus/swap 2-monitors setup
+#
+
+# focus the node in the given direction
+# Now with multi-monitor support. (should work like i3)
+# Movimiento inteligente de foco y ventanas (Vim keys)
+super + {_,shift,ctrl} + {h,j,k,l}
+    mode={f,s,n}; \
+    dir={west,south,north,east}; \
+    bash -c "if bspc node -\"$mode\" \"$dir\".local; then \
+        exit 0; \
+    elif [ \"$mode\" = \"f\" ]; then \
+        bspc monitor -f \"$dir\"; \
+    else \
+        bspc node -m \"$dir\" --follow; \
+    fi"
+
+# focus or send to the given desktop
+# Now supports multimonitor where each monitor
+# can have up to 10 workspaces each.
+super + {_,shift + }{1-9,0}
+    monitor=$(bspc query -M --names -m focused); \
+    bspc {desktop -f,node -d} $monitor:'^'{1-9,10}
+
+# move window to the previous/next (dont loose the focus)
+super + {_,shift +} {o, p}
+	bspc {monitor --focus,node --to-monitor} {prev,next}
+
+# move the focus window between monitors
+#super + {q, a}
+#    bspc monitor -f {prev,next}
+
+# Cambiar foco (super) o mover ventana (super+shift) al monitor Q o A
+super + {_,shift + }{q,a}
+    ws=$(bspc query -D -d focused --names); \
+    bspc {desktop -f,node -d} {DisplayPort-0,HDMI-A-0}:'^'"$ws"
+
+#
+# preselect
+#
+
+# preselect the direction
+super + ctrl + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+# preselect the ratio
+super + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+# cancel the preselection for the focused node
+super + ctrl + space
+	bspc node -p cancel
+
+# cancel the preselection for the focused desktop
+super + ctrl + shift + space
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+#
+# move/resize
+#
+
+# expand a window by moving one of its side outward
+super + alt + {h,j,k,l}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# contract a window by moving one of its side inward
+super + alt + shift + {h,j,k,l}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# move a floating window
+super + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}

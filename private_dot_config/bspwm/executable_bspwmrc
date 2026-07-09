@@ -1,0 +1,108 @@
+#! /bin/sh
+# =========================================================
+# AUTOSTART DAEMONS
+# =========================================================
+# start hotkey daemon
+pgrep -x sxhkd > /dev/null || sxhkd &
+# start usb-dmenu daemon
+~/.config/usb-menu.sh 2>/dev/null &
+
+# feh last bg
+~/.fehbg &
+# background randomizer
+~/.config/bspwm-bg.sh &
+
+# =========================================================
+# MONITOR AND WORKSPACE SETUP
+# =========================================================
+# XFCE4/bspwm 2-monitors workspace layout
+# Give each monitor 6 workspaces
+for m in $(bspc query --monitors --names); do
+    bspc monitor $m -d 1 2 3 4 5 6
+done
+
+# bspwm 2-monitors workspace	[old]
+#bspc monitor DisplayPort-0 -d I II III IV V VI
+#bspc monitor HDMI-A-0 -d VII VIII IX X XI
+
+# =========================================================
+# WINDOW MANAGER APPEARANCE
+# =========================================================
+# bspwm customization
+bspc config border_width         2
+bspc config window_gap           6
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+bspc config active_border_color '#19002e'
+bspc config normal_border_color '#19002e'
+
+## Dracula ##
+# config1
+#bspc config focused_border_color '#5c729d'
+# config2
+bspc config focused_border_color '#ff79c6'
+
+## Wildberries ##
+# config1
+#bspc config focused_border_color '#399ee6'
+# config2
+#bspc config focused_border_color '#00ffb7'
+
+# =========================================================
+# MOUSE AND POINTER CONFIGURATION
+# =========================================================
+bspc config focus_follows_pointer true
+
+# mice bindings for pseudo_tiled/floating windows
+bspc config pointer_action1 move
+bspc config pointer_action2 resize_side
+bspc config pointer_action2 resize_corner
+
+# =========================================================
+# WINDOW RULES
+# =========================================================
+# external rules script
+bspc config external_rules_command ~/.config/bspwm/external_rules.sh
+
+# floating window rules
+bspc rule -a Wrapper-2.0 follow=on state=floating focus=on
+bspc rule -a "MATLAB R2024a" follow=on state=floating
+bspc rule -a Xfce4-about follow=off state=floating
+
+# workspace assignments
+bspc rule -a discord desktop='^4'
+bspc rule -a com.github.th-ch.youtube-music:com.github.th-ch.youtube-music desktop='^5'
+bspc rule -a Parole desktop='^5' follow=on
+bspc rule -a firefox:Toolkit desktop='^5' state=pseudo_tiled focus=on
+bspc rule -a steam desktop='^6'
+bspc rule -a Microsoft-edge desktop='^10' follow=on
+
+# =========================================================
+# APP AUTOSTART (bspwm environment)
+# =========================================================
+(sleep 8s && megasync) &
+#(sleep 7s && kitty -e rtorrent) &
+(sleep 6s && corectrl --toggle-window-visibility) & # only 4 XFCE #
+### Comment all this section if u are using XFCE instead of bspwm ###
+# start picom (bspwm animations), polkit and polybar
+#picom &
+#/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+
+# polybar and some autostart applets
+#~/.config/polybar/launch.sh &
+
+#redshift-gtk &
+#(sleep 2s && nm-applet) &
+#(sleep 3s && blueman-applet) &
+#(sleep 5s && firewall-applet) &
+
+# now xfce4 manages dpms and screensaver
+#(sleep 1s && xfce4-screensaver) &
+#xfce4-power-manager &
+
+# set off dpms and screensaver	[old]
+#xset -dpms &
+#xset s off &

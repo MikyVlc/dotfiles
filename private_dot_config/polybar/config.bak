@@ -14,32 +14,35 @@
 ;  | |__| |_| | |__| |_| |  _ < ___) |
 ;   \____\___/|_____\___/|_| \_\____/                                     
 [colors]
-; Wildberries theme
-background = #aa19002e
-foreground = #c79bff
-foreground-alt = #03a5c9
+; Dracula theme
+background = #bb282a36
+background-alt = #44475a
+foreground = #f8f8f2
+foreground-alt = #6272a4
+primary = #bd93f9
+secondary = #ffb86c
+alert = #ff5555
+disabled = #6272a4
 
-primary = #ff0e82
-secondary = #00ffb7
-alert = #f40056
-
-cyan = #00ffdb
-aqua = #00f7e2
-red = #d70040
-yellow = #ffd700
-green = #00ffb7
 orange = #ff4500
-magenta = #e0a9ff
-;white = #ff2b99
-white = #88c0d0
-pink = #900048
+white = #bb88c0d0
 blue = #399ee6
-black = #240041
+
+aqua = #8be9fd
+red = #ff5555
+yellow = #f1fa8c
+green = #50fa7b
+magenta = #ff79c6
+;white = #ffffff
+pink = #ff79c6
+black = #282a36
 bright-black = #2e3440
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [bar/example]
+monitor = DisplayPort-0
+
 width = 100%
 height = 20
 radius = 0.0
@@ -81,42 +84,42 @@ line-size = 2
 
 [module/left1]
 type = custom/text
-content-foreground = ${colors.black}
+content-foreground = ${colors.background-alt}
 content = " "
 
 [module/left2]
 type = custom/text
-content-foreground = ${colors.black}
+content-foreground = ${colors.background-alt}
 content = ""
 
 [module/left3]
 type = custom/text
-content-foreground = ${colors.pink}
-content = "  "
+content-foreground = ${colors.background-alt}
+content = "  ║"
 
 [module/left4]
 type = custom/text
-content-foreground = ${colors.pink}
-content = ""
+content-foreground = ${colors.background-alt}
+content = "║"
 
 [module/medium1]
 type = custom/text
-content-foreground = ${colors.black}
+content-foreground = ${colors.background-alt}
 content = " "
 
 [module/medium2]
 type = custom/text
-content-foreground = ${colors.black}
+content-foreground = ${colors.background-alt}
 content = ""
 
 [module/right1]
 type = custom/text
-content-foreground = ${colors.black}
+content-foreground = ${colors.background-alt}
 content = " "
 
 [module/right2]
 type = custom/text
-content-foreground = ${colors.black}
+content-foreground = ${colors.background-alt}
 content = ""
 
 [module/sep]
@@ -127,42 +130,47 @@ content = " "
 
 [module/bspwm]
 type = internal/bspwm
-;ws-icon-0 = I;%{F#A3BE8C}
-;ws-icon-1 = II;%{F#D08770}
-;ws-icon-2 = III;%{F#81A1C1}󰨞
-;ws-icon-3 = IV;%{F#88C0D0}
-;ws-icon-4 = V;%{F#D08770}
-;ws-icon-5 = VI;%{F#A3BE8C}
-;ws-icon-default = ♟
+ws-icon-0 = I;
+ws-icon-1 = II;
+ws-icon-2 = III;
+ws-icon-3 = IV;
+ws-icon-4 = V;
+ws-icon-5 = VI;
+ws-icon-6 = VII;%{F#EBCB8B}󱎓
+ws-icon-7 = VIII;%{F#81A1C1}󰏆
+ws-icon-8 = IX;%{F#B48EAD}
+ws-icon-9 = X;%{F#D08770}
+ws-icon-10 = XI;%{F#A3BE8C}󰞦
+ws-icon-default = ♟
 
 ; BSPWM workspace colors and customization
-;label-focused = "%icon%"
-label-focused = %name%
-label-focused-background = ${colors.pink}
+label-focused = "%icon%"
+;label-focused = %name%
+label-focused-background = ${colors.background-alt}
 ;label-focused-underline = ${colors.aqua}
-label-focused-foreground = ${colors.green}
+label-focused-foreground = ${colors.foreground}
 label-focused-padding = 2
 
-;label-occupied = %icon%
-label-occupied = %name%
-label-occupied-background = ${colors.black}
-label-occupied-foreground = ${colors.magenta}
+label-occupied = %icon%
+;label-occupied = %name%
+label-occupied-background = ${colors.background}
+label-occupied-foreground = ${colors.disabled}
 label-occupied-padding = 2
 
-;label-urgent = %icon%
-label-urgent = %name%
+label-urgent = %icon%
+;label-urgent = %name%
 label-urgent-background = ${colors.background}
 label-urgent-foreground = ${colors.orange}
 label-urgent-padding = 2
 
-;label-empty = %icon%
-label-empty = %name%
+label-empty = %icon%
+;label-empty = %name%
 label-empty-background = ${colors.background}
 label-empty-foreground = ${colors.bright-black}
 label-empty-padding = 2
 
-; Separator in between workspaces 03a5c9
-label-separator = %{F#900048}║
+; Separator in between workspaces (bright-blue=03a5c9)
+label-separator = %{F#44475a}║
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -194,14 +202,14 @@ format-foreground = ${colors.white}
 [module/tray]
 type = internal/tray
 
-format-background = ${colors.black}
+format-background = ${colors.background-alt}
 ; Espaciado entre iconos
 tray-spacing = 13px
 ; Padding alrededor de cada icono
 tray-padding = 3px
 ; Tamaño de los iconos (relativo a la altura de la barra)
-tray-size = 100%
-tray-background = ${colors.black}
+tray-size = 80%
+tray-background = ${colors.background-alt}
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -251,9 +259,9 @@ label-mounted = "    %percentage_used%% "
 ; Default: %mountpoint% is not mounted
 label-unmounted = %mountpoint%: not mounted
 label-unmounted-foreground = #55
-label-unmounted-background = ${colors.black}
-label-mounted-background = ${colors.black}
-label-mounted-foreground = ${colors.blue}
+label-unmounted-background = ${colors.background-alt}
+label-mounted-background = ${colors.background-alt}
+label-mounted-foreground = ${colors.yellow}
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -261,15 +269,15 @@ label-mounted-foreground = ${colors.blue}
 type = internal/xwindow
 
 format = <label>
-format-background = ${colors.black}
-format-foreground = ${colors.cyan}
+format-background = ${colors.background-alt}
+format-foreground = ${colors.foreground}
 format-padding = 1
 
 label = "  %title%"
 label-maxlen = 30
 label-empty = "  "
 label-separator = " "
-label-empty-foreground = ${colors.aqua}
+label-empty-foreground = ${colors.foreground-alt}
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -283,13 +291,13 @@ ramp-volume-1 ="   "
 ramp-volume-1-font = 1
 ramp-volume-2 ="   "
 ramp-volume-2-font = 1
-format-volume-background = ${colors.black}
-format-volume-foreground = ${colors.cyan}
+format-volume-background = ${colors.background-alt}
+format-volume-foreground = ${colors.secondary}
 format-volume-padding = 1
 
 format-muted = <label-muted>
-format-muted-background = ${colors.black}	
-format-muted-foreground = ${colors.alert}
+format-muted-background = ${colors.background-alt}
+format-muted-foreground = ${colors.orange}
 format-muted-font = 2
 label-muted ="   "
 
@@ -305,14 +313,37 @@ interval = 3
 format-prefix-padding = 2
 format-prefix-font = 2
 format-prefix-foreground = #ffffff
-format-background = ${colors.black}
-format-foreground = ${colors.primary}
+format-background = ${colors.background-alt}
+format-foreground = ${colors.green}
 
 label = "    %percentage_used%%"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [module/network]
+type = internal/network
+interface = wlan0
+format-connected = <label-connected>
+format-connected-prefix = " "
+format-connected-prefix-font = 2
+;label-connected = " %essid%%downspeed:9% "
+label-connected = %{A1:nm-connection-editor:} %essid%%downspeed:9%%{A}
+label-connected-font = 1
+
+format-disconnected = <label-disconnected>
+format-disconnected-prefix = "  "
+;label-disconnected = 
+label-disconnected = %{A1:nm-connection-editor:}%{A}
+label-disconnected-font = 2
+
+format-connected-background = ${colors.background-alt}
+format-connected-foreground = ${colors.primary}
+format-disconnected-background = ${colors.background-alt}
+format-disconnected-foreground = ${colors.alert}
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[module/wired-network]
 type = internal/network
 interface = eno1
 interval = 3.0
@@ -326,12 +357,12 @@ format-connected = <label-connected>
 format-disconnected = <label-disconnected>
 
 label-connected = "   󰈀%downspeed% "
-label-connected-foreground = ${colors.green}
-label-connected-background = ${colors.black}
+label-connected-foreground = ${colors.foreground}
+label-connected-background = ${colors.background-alt}
 
 label-disconnected = "   󰈂 "
-label-disconnected-foreground = ${colors.orange}
-label-disconnected-background = ${colors.black}
+label-disconnected-foreground = ${colors.alert}
+label-disconnected-background = ${colors.background-alt}
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -340,8 +371,8 @@ type = internal/cpu
 interval = 1
 
 format = <label>
-format-background = ${colors.black}
-format-foreground = ${colors.yellow}
+format-background = ${colors.background-alt}
+format-foreground = ${colors.magenta}
 
 label = "    %percentage%% "
 
@@ -352,17 +383,17 @@ type = internal/date
 interval = 1
 
 date = 
-date-alt = "   󰔠  %A, %b %d -"
+date-alt = "   󰔠 %A, %b %d -"
 
-time = "    %H:%M "
+time = "   %H:%M "
 time-alt = "%H:%M:%S "
 
 ;format-prefix = ""
 format-prefix-padding = 1
 format-prefix-font = 1
 format-prefix-foreground = #ffffff
-format-background = ${colors.black}
-format-foreground = ${colors.magenta}
+format-background = ${colors.background-alt}
+format-foreground = ${colors.aqua}
 
 label = %date% %time%
 
@@ -380,6 +411,27 @@ click-left = $HOME/.config/power-menu.sh
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+[module/playerctl]
+type = custom/script
+# refresh music info every 3 seconds, check if player is active every 2.5 seconds
+interval = 3
+interval-if = 2.75
+
+exec = ~/.config/polybar/bin/music-info.sh &
+# only execute the script if the the player is active
+execif = ~/.config/polybar/bin/playerctl-status.sh &
+
+
+format-prefix = "  󰎄"
+format-prefix-padding = 1
+format-prefix-foreground = ${colors.primary}
+format-background = ${colors.background-alt}
+
+label = %{A1:playerctl play-pause &:}󰐎%{A}  %output:0:25:%  %{A1:playerctl previous &:}󰼨%{A} %{A1:playerctl next &:}󰼧%{A}
+label-foreground = ${colors.primary}
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 [settings]
 screenchange-reload = true
 ;compositing-background = xor
@@ -393,3 +445,45 @@ pseudo-transparency = true
 ;margin-bottom = 5
 
 ;vim:ft=dosini
+
+[bar/example2]
+monitor = HDMI-A-0
+
+width = 100%
+height = 20
+radius = 0.0
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+padding-left = 0
+padding-right = 0
+
+border-size = 8
+border-color = ${colors.background}
+
+module-margin-left = 0
+module-margin-right = 0
+
+font-0 = "Inconsolata CondensedBlack:size=13;3"
+font-1 = "SauceCodePro Nerd Font Mono:size=22;6"
+font-2 = "Material Icons:pixelsize=15;5"
+font-3 = "Sinji:pixelsize=15;5"
+font-4 = "Togalite medium:pixelsize=11;2"
+
+; MODULES SETUP
+modules-left = launcher kernel-name left3 bspwm left4
+modules-center = medium1 windowtitle medium2 sep
+modules-right = right1 filesystem cpu memory volume playerctl date right2 shutdown
+
+;tray-position = right
+;tray-padding = 5
+;tray-background = #0063ff
+
+cursor-click = pointer
+cursor-scroll = pointer
+
+line-size = 2
+
+;separator = %{F#4C566A}|%{F-}

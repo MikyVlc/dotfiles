@@ -41,9 +41,9 @@ bspc config normal_border_color '#19002e'
 
 ## Dracula ##
 # config1
-#bspc config focused_border_color '#5c729d'
+bspc config focused_border_color '#5c729d'
 # config2
-bspc config focused_border_color '#ff79c6'
+#bspc config focused_border_color '#ff79c6'
 
 ## Wildberries ##
 # config1
@@ -85,23 +85,23 @@ bspc rule -a Microsoft-edge desktop='^10' follow=on
 # =========================================================
 (sleep 8s && megasync) &
 #(sleep 7s && kitty -e rtorrent) &
-(sleep 6s && corectrl --toggle-window-visibility) & # only 4 XFCE #
+(sleep 6s && corectrl --toggle-window-visibility) &
 ### Comment all this section if u are using XFCE instead of bspwm ###
 # start picom (bspwm animations), polkit and polybar
-#picom &
-#/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+picom &
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 # polybar and some autostart applets
-#~/.config/polybar/launch.sh &
+~/.config/polybar/launch.sh &
 
-#redshift-gtk &
-#(sleep 2s && nm-applet) &
-#(sleep 3s && blueman-applet) &
-#(sleep 5s && firewall-applet) &
+redshift-gtk &
+(sleep 2s && nm-applet) &
+(sleep 3s && blueman-applet) &
+(sleep 5s && firewall-applet) &
 
 # now xfce4 manages dpms and screensaver
-#(sleep 1s && xfce4-screensaver) &
-#xfce4-power-manager &
+(sleep 1s && xfce4-screensaver) &
+xfce4-power-manager &
 
 # set off dpms and screensaver	[old]
 #xset -dpms &

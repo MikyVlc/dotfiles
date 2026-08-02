@@ -8,8 +8,7 @@ super + Return
 
 # program launcher
 super + @space
-#	dmenu_run -b -p " dmenu run" -i -fn "HackNerdFontMono-21" -nb '#240041' -nf '#c79bff' -sf '#00ffb7' -sb '#900048'
-    dmenu_run -p " dmenu run" -i -fn "Inconsolata CondensedBlack-21" -nb '#240041' -nf '#c79bff' -sf '#00ffb7' -sb '#900048'
+    dmenu_run-launch
 
 # power menu
 super + End

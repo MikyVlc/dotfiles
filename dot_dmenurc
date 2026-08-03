@@ -1,0 +1,18 @@
+#
+# ~/.dmenurc
+#
+
+## define the font for dmenu to be used
+DMENU_FN="HackNerdFontMono-16"
+
+## background colour for unselected menu-items
+DMENU_NB="#282a36"
+
+## textcolour for unselected menu-items
+DMENU_NF="#f8f8f2"
+
+## background colour for selected menu-items
+DMENU_SB="#bd93f9"
+
+## textcolour for selected menu-items
+DMENU_SF="#282a36"

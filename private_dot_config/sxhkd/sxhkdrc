@@ -16,7 +16,7 @@ super + End
 
 # USB menu
 super + u
-	~/.config/usb-menu.sh manual
+	~/.config/usb-dmenu.sh manual
 
 # gamemode
 super + x
@@ -200,7 +200,7 @@ super + {o,i}
 # focus the node in the given direction
 # Now with multi-monitor support. (should work like i3)
 # Movimiento inteligente de foco y ventanas (Vim keys)
-super + {_,shift,ctrl} + {h,j,k,l}
+super + {_,shift,,shift + ctrl} + {h,j,k,l}
     mode={f,s,n}; \
     dir={west,south,north,east}; \
     bash -c "if bspc node -\"$mode\" \"$dir\".local; then \
@@ -219,7 +219,7 @@ super + {_,shift + }{1-9,0}
     bspc {desktop -f,node -d} $monitor:'^'{1-9,10}
 
 # move window to the previous/next (dont loose the focus)
-super + {_,shift +} {o, p}
+super + {_,shift + } {o, p}
 	bspc {monitor --focus,node --to-monitor} {prev,next}
 
 # move the focus window between monitors

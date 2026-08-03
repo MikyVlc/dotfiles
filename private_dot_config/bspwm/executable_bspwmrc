@@ -5,7 +5,7 @@
 # start hotkey daemon
 pgrep -x sxhkd > /dev/null || sxhkd &
 # start usb-dmenu daemon
-~/.config/usb-menu.sh 2>/dev/null &
+~/.config/usb-dmenu.sh 2>/dev/null &
 
 # feh last bg
 ~/.fehbg &
@@ -89,19 +89,19 @@ bspc rule -a Microsoft-edge desktop='^10' follow=on
 ### Comment all this section if u are using XFCE instead of bspwm ###
 # start picom (bspwm animations), polkit and polybar
 picom &
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+#/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 # polybar and some autostart applets
-~/.config/polybar/launch.sh &
+#~/.config/polybar/launch.sh &
 
-redshift-gtk &
-(sleep 2s && nm-applet) &
-(sleep 3s && blueman-applet) &
-(sleep 5s && firewall-applet) &
+#redshift-gtk &
+#(sleep 2s && nm-applet) &
+#(sleep 3s && blueman-applet) &
+#(sleep 5s && firewall-applet) &
 
 # now xfce4 manages dpms and screensaver
-(sleep 1s && xfce4-screensaver) &
-xfce4-power-manager &
+#(sleep 1s && xfce4-screensaver) &
+#xfce4-power-manager &
 
 # set off dpms and screensaver	[old]
 #xset -dpms &

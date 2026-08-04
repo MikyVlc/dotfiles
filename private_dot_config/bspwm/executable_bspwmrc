@@ -10,7 +10,7 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 # feh last bg
 ~/.fehbg &
 # background randomizer
-~/.config/bspwm-bg.sh &
+#~/.config/bspwm-bg.sh &
 
 # =========================================================
 # MONITOR AND WORKSPACE SETUP

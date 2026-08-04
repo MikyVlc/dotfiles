@@ -1,0 +1,2 @@
+#!/bin/sh
+feh --no-fehbg --bg-scale '/home/quelo/Imágenes/home-dracula-wallpaper.png' '/home/quelo/Imágenes/arch-wallpaper.png'

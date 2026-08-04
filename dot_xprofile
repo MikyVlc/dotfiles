@@ -1,9 +1,0 @@
-# ~/.xprofile
-# Se ejecuta al iniciar sesión gráfica (SDDM, LightDM, etc.)
-
-# Exportar cursor
-export XCURSOR_THEME=Hacked-Green
-export XCURSOR_SIZE=32
-
-# Cambiar el cursor por defecto en el root window
-(sleep 2 && xsetroot -cursor_name left_ptr) &
